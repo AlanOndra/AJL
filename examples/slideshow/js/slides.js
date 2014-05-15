@@ -10,17 +10,17 @@ onReady.run(function(){
 		},
 		slides: [
 			{
-				src: 'img/slide0.jpg',
+				src: 'http://i.imgur.com/gObQ25s.jpg',
 				title: 'Sandwich 1',
 				href: '#'
 			},
 			{
-				src: 'img/slide1.jpg',
+				src: 'http://i.imgur.com/MkeCwuB.jpg',
 				title: 'Sandwich 2',
 				href: '#'
 			},
 			{
-				src: 'img/slide2.jpg',
+				src: 'http://i.imgur.com/7YNsSUH.jpg',
 				title: 'Hot Dog',
 				href: '#'
 			}
