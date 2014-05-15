@@ -1,0 +1,171 @@
+* {
+	font-size:				1em;
+	line-height:			1em;
+	margin:					0;
+	padding:				0;
+}
+body {
+	font-family:			sans-serif;
+	text-align:				center;
+}
+h1 {
+	background:				#EEE;
+	box-shadow:				0 0 10px rgba(0,0,0,.5);
+	font-size:				2em;
+	padding:				10px 0;
+}
+a img {
+	border:					0 none transparent;
+}
+#slideshow {
+	height:					240px;
+	margin:					10px auto;
+	overflow:				hidden;
+	position:				relative;
+	width:					480px;
+}
+#slideshow .toolbar {
+	background:				rgba(255,255,255,.5);
+	bottom:					0;
+	height:					40px;
+	left:					0;
+	position:				absolute;
+	width:					100%;
+}
+#slideshow .toolbar .button {
+	cursor:					pointer;
+	height:					30px;
+	line-height:			30px;
+	overflow:				hidden;
+	text-align:				center;
+	width:					30px;
+}
+#slideshow .toolbar .button:link,
+#slideshow .toolbar .button:visited {
+	background:				#F00;
+	color:					#FFF;
+	text-decoration:		none;
+}
+#slideshow .toolbar .button:hover,
+#slideshow .toolbar .button:focus,
+#slideshow .toolbar .button:active {
+	background:				#FFF;
+	color:					#F00;
+	text-decoration:		none;
+}
+#slideshow .toolbar .prev {
+	left:					5px;
+	position:				absolute;
+	top:					5px;
+}
+#slideshow .toolbar .next {
+	position:				absolute;
+	right:					5px;
+	top:					5px;
+}
+#slideshow .slides {
+	list-style-type:		none;
+}
+#slideshow .slides li {
+	display:				inline;
+	line-height:			40px;
+	margin:					0 5px;
+}
+#slideshow .slides li.selected {
+	outline:				1px solid #00F;
+}
+#slideshow .slides li a {
+	padding:				3px 5px;
+}
+#slideshow .slides li a:link,
+#slideshow .slides li a:visited {
+	background:				#F00;
+	color:					#FFF;
+	text-decoration:		none;
+}
+#slideshow .slides li a:hover,
+#slideshow .slides li a:focus,
+#slideshow .slides li a:active {
+	background:				#FFF;
+	color:					#F00;
+	text-decoration:		none;
+}
+
+#lb-tint {
+	background:				rgba(255,255,255,.5);
+	height:					100%;
+	left:					0;
+	min-height:				100%;
+	position:				fixed;
+	top:					0;
+	width:					100%;
+}
+#lb-tint.disabled {
+	display:				none;
+}
+
+.lightbox {
+	background:				#FFF;
+	border:					1px solid #CCC;
+	box-shadow:				0 3px 5px rgba(0,0,0,.5);
+	height:					200px;
+	left:					50%;
+	margin-left:			-200px;
+	margin-top:				-100px;
+	position:				fixed;
+	top:					50%;
+	width:					400px;
+}
+.lightbox.closed {
+	display:				none;
+}
+.lightbox .title {
+	background:				#CCC;
+	font-weight:			bold;
+	height:					35px;
+	line-height:			35px;
+	overflow:				hidden;
+	text-align:				left;
+	padding:				0 10px;
+	position:				relative;
+}
+.lightbox .title .close {
+	display:				block;
+	height:					25px;
+	line-height:			27px;
+	overflow:				hidden;
+	position:				absolute;
+	right:					5px;
+	text-align:				center;
+	top:					5px;
+	width:					25px;
+}
+.lightbox .title .close:link,
+.lightbox .title .close:visited {
+	background:				#DDD;
+	color:					#000;
+	text-decoration:		none;
+ }
+.lightbox .title .close:hover,
+.lightbox .title .close:focus,
+.lightbox .title .close:active {
+	background:				#F00;
+	color:					#FFF;
+	text-decoration:		none;
+ }
+.lightbox .toolbar {
+	background:				#DDD;
+	font-size:				.875em;
+	height:					30px;
+	line-height:			30px;
+	overflow:				hidden;
+	padding:				0 5px;
+	position:				relative;
+	text-align:				left;
+}
+.lightbox .content {
+	height:					135px;
+	overflow:				auto;
+	position:				relative;
+	text-align:				left;
+}
