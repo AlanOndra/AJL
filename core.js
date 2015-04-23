@@ -1,9 +1,9 @@
 var onReady = {
 	handlers: [],
-	orsc: function(evt) {
+	orsc: function() {
 		if(document.readyState === 'complete' || document.readyState === 4) {
 			for(var i=0,l=onReady.handlers.length;i<l;i++)
-				{ onReady.handlers[i](evt); }
+				{ onReady.handlers[i](); }
 		}
 	},
 	run: function() {
@@ -15,26 +15,23 @@ var onReady = {
 
 			if(document.addEventListener)
 				{ document.addEventListener('DOMContentLoaded',handler,bubble); }
-			else if(document.attachEvent) {
-				if(onReady.handlers.length===0)
+			else if(onReady.handlers.length===0) {
+				if(document.attachEvent)
 					{ document.attachEvent('onreadystatechange',onReady.orsc); }
-				onReady.handlers[onReady.handlers.length] = handler;
-			}
-			else {
-				if(onReady.handlers.length===0)
+				else
 					{ window.onreadystatechange = onReady.orsc; }
-				onReady.handlers[onReady.handlers.length] = handler;
 			}
+			onReady.handlers[onReady.handlers.length] = handler;
 		}
 	}
 };
 
 var Element = function(options) {
-	this.tag		= 'div';
-	this.text		= null;
-	this.attributes	= {};
-	this.children	= [];
-	this.events		= {};
+	this.tag        = 'div';
+	this.text       = null;
+	this.attributes = {};
+	this.children   = [];
+	this.events     = {};
 
 	for(var property in options) {
 		if(property in this)
@@ -403,6 +400,10 @@ Element.prototype.setData = function(attr,value)
 
 var JS = {
 	files: [],
+	init: function() {
+		var scripts = document.getElementsByTagName('script');
+			for(var i=0,l=scripts.length;i<l;i++) { JS.files[i] = scripts[i].src; }
+	},
 	import: function(options) {
 		var scripts = document.getElementsByTagName('script');
 		var first = (scripts.length>0) ? scripts[0] : false;
@@ -481,23 +482,22 @@ var JS = {
 	}
 };
 
-
 /**
  * Creates new URL object.
  * @param {type} url URL to parse.
  * @returns {URL}
  */
 var URL = function(url) {
-	this.href		= null;
-	this.protocol	= null;
-	this.host		= null;
-	this.hostname	= null;
-	this.port		= null;
-	this.pathname	= '/';
-	this.filename	= null;
-	this.search		= null;
-	this.hash		= null;
-	this.parameters	= {};
+	this.href       = null;
+	this.protocol   = null;
+	this.host       = null;
+	this.hostname   = null;
+	this.port       = null;
+	this.pathname   = '/';
+	this.filename   = null;
+	this.search     = null;
+	this.hash       = null;
+	this.parameters = {};
 
 	this.go = function()
 		{ window.location = this.toString(); };
@@ -518,22 +518,22 @@ var URL = function(url) {
 			this.isValid = function()
 				{ return true; };
 
-			this.href		= matches[0];
-            this.protocol	= matches[1].substr(0,matches[1].indexOf(':'));
-            this.host		= matches[2];
-			this.hostname	= matches[2];
-			this.pathname	= matches[4] || '/';
-			this.search		= matches[5];
-			this.hash		= matches[6];
+			this.href     = matches[0];
+			this.protocol = matches[1].substr(0,matches[1].indexOf(':'));
+			this.host     = matches[2];
+			this.hostname = matches[2];
+			this.pathname = matches[4] || '/';
+			this.search   = matches[5];
+			this.hash     = matches[6];
 
 			this.filename = (this.pathname.length > 1 && this.pathname !== '/')
 				? this.pathname.substring(this.pathname.lastIndexOf('/')+1)
 				: null;
 
-            if(matches[3] !== undefined) {
-                this.host += matches[3];
-			    this.port = parseInt(matches[3].substring(1));
-            }
+			if(matches[3] !== undefined) {
+				this.host += matches[3];
+				this.port = parseInt(matches[3].substring(1));
+			}
 
 			if(this.search !== undefined) {
 				var searchstring = this.search.replace('?','');
@@ -769,10 +769,5 @@ function noScript() {
 	if(ns) { ns.parentNode.removeChild(ns); }
 }
 
-function getScripts(){
-	var scripts = document.getElementsByTagName('script');
-	for(var i=0,l=scripts.length;i<l;i++) { JS.files[i] = scripts[i].src; }
-}
-
 onReady.run(noScript);
-onReady.run(getScripts);
+onReady.run(JS.init);
