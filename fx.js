@@ -4,18 +4,18 @@ var FX = {
 		var me = this;
 
 //		properties
-		this.element	= null;
-		this.slides		= [];
-		this.position	= false;
-		this.seconds	= 3;
-		this.timer		= false;
-		this.wrap		= true;
-		this.show		= {
-			prev:			true,
-			next:			true,
-			slides:			true
+		this.element  = null;
+		this.slides   = [];
+		this.position = false;
+		this.seconds  = 3;
+		this.timer    = false;
+		this.wrap     = true;
+		this.show     = {
+			prev:   true,
+			next:   true,
+			slides: true
 		};
-		this.toolbar	= null;
+		this.toolbar  = null;
 
 //		required options: element (HTMLElement) and slides (array)
 		if(
@@ -25,9 +25,9 @@ var FX = {
 			typeof options.slides === typeof [] &&
 			options.slides.length > 0
 		) {
-			this.element	= options.element;
-			this.slides		= options.slides;
-			this.position	= 0;
+			this.element  = options.element;
+			this.slides   = options.slides;
+			this.position = 0;
 
 			if('seconds' in options && typeof options.seconds == 'number')
 				{ this.seconds = options.seconds; }
@@ -230,10 +230,10 @@ var FX = {
 				var link = this.element.getElementsByTagName('a')[0];
 				var img = link.getElementsByTagName('img')[0];
 
-				link.href	= slide.href;
-				img.src		= slide.src;
-				img.alt		= slide.title;
-				img.title	= slide.title;
+				link.href = slide.href;
+				img.src   = slide.src;
+				img.alt   = slide.title;
+				img.title = slide.title;
 
 				this.timer = setTimeout(function(){me.next();},this.seconds*1000);
 			};
@@ -244,26 +244,26 @@ var FX = {
 	Lightbox: function(options) {
 		var me = this;
 
-		this.form		= null;
-		this.id			= null;
-		this.className	= null;
-		this.action		= '#';
-		this.method		= 'get';
-		this.title		= null;
-		this.toolbar	= [];
-		this.content	= [];
-		this.show		= {
-			title:			true,
-			close:			true,
-			toolbar:		true
+		this.form       = null;
+		this.id         = null;
+		this.className  = null;
+		this.action     = '#';
+		this.method     = 'get';
+		this.title      = null;
+		this.toolbar    = [];
+		this.content    = [];
+		this.show       = {
+			title:   true,
+			close:   true,
+			toolbar: true
 		};
-		this.events		= {
+		this.events     = {
 			opening: [],
-			open: [],
+			open:    [],
 			closing: [],
-			close: [],
-			submit: [],
-			reset: []
+			close:   [],
+			submit:  [],
+			reset:   []
 		};
 
 		var methods = [
