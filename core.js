@@ -1,12 +1,14 @@
-var onReady = {
-	handlers: [],
-	orsc: function() {
+var onReady = (function(){
+	var handlers = [];
+
+	function orsc() {
 		if(document.readyState === 'complete' || document.readyState === 4) {
-			for(var i=0,l=onReady.handlers.length;i<l;i++)
-				{ onReady.handlers[i](); }
+			for(var i=0,l=handlers.length;i<l;i++)
+				{ handlers[i](); }
 		}
-	},
-	run: function() {
+	};
+
+	return function() {
 		if(arguments.length>0) {
 			var handler = arguments[0];
 			var bubble = (arguments.length > 1 && typeof arguments[1] === 'boolean')
@@ -15,16 +17,16 @@ var onReady = {
 
 			if(document.addEventListener)
 				{ document.addEventListener('DOMContentLoaded',handler,bubble); }
-			else if(onReady.handlers.length===0) {
+			else if(handlers.length===0) {
 				if(document.attachEvent)
-					{ document.attachEvent('onreadystatechange',onReady.orsc); }
+					{ document.attachEvent('onreadystatechange',orsc); }
 				else
-					{ window.onreadystatechange = onReady.orsc; }
+					{ window.onreadystatechange = orsc; }
 			}
-			onReady.handlers[onReady.handlers.length] = handler;
+			handlers[handlers.length] = handler;
 		}
-	}
-};
+	};
+})();
 
 var Element = function(options) {
 	this.tag        = 'div';
@@ -769,5 +771,5 @@ function noScript() {
 	if(ns) { ns.parentNode.removeChild(ns); }
 }
 
-onReady.run(noScript);
-onReady.run(JS.init);
+onReady(noScript);
+onReady(JS.init);

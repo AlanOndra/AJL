@@ -1,4 +1,4 @@
-onReady.run(function(){
+onReady(function(){
 	var ss = new FX.SlideShow({
 		element: document.getElementById('slideshow'),
 		seconds: 3,
